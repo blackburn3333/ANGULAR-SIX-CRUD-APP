@@ -1,0 +1,26 @@
+@import "mixin";
+
+.text-input{
+  width: 100%;
+  font-size: 0.9em;
+  padding: 0.5em;
+  @include border-bottom($primary-color,1px);
+  @include transition(0.5s);
+}
+
+.text-area{
+  resize: none;
+  width: 100%;
+  font-size: 0.9em;
+  padding: 0.5em;
+  @include border-bottom($primary-color,1px);
+  @include transition(0.5s);
+}
+
+.text-input:focus{
+  outline: none;
+}
+
+.text-area:focus{
+  outline: none;
+}

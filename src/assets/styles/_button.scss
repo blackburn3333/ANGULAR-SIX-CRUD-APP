@@ -1,0 +1,25 @@
+@import "mixin";
+.basic-button{
+  width: 100%;
+  border: none;
+  font-size: 0.9em;
+  padding: 0.5em;
+  background-color: $primary-color;
+  @include transition(0.5s);
+  @include button-border(0.5em)
+}
+
+.basic-button:hover{
+  background-color: $secondary-color;
+  color: $font-light-color;
+  cursor: pointer;
+}
+
+.material-icon-btns{
+  background-color: transparent;
+  border: none;
+}
+
+.material-icon-btns:hover{
+  cursor: pointer;
+}

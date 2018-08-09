@@ -1,0 +1,6 @@
+{
+    "env": {
+        "DB_UserName": "read_with_us_admin",
+        "DB_Password": "rwsPassword123"
+    }
+}

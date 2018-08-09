@@ -1,0 +1,28 @@
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+@mixin duration($value){
+  -webkit-transition-duration: $value;
+  -moz-animation-duration: $value;
+  transition-duration: $value;
+}
+
+@mixin button-border($value){
+  border-radius: $value;
+}
+
+@mixin transition($value){
+  -webkit-transition: $value;
+  transition: $value;
+}
+
+@mixin border-bottom($color,$size){
+  border: none;
+  border-bottom: $size $primary-color solid;
+}
+
+
+

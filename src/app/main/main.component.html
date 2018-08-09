@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h2>CRUD APP</h2>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <form (submit)="insertNote($event)">
+        <input required type="text" class="text-input" placeholder="Note Title" id="note_title">
+        <textarea required class="text-area" placeholder="Note Description" id="note_description"></textarea>
+        <input class="basic-button" type="submit" value="Enter">
+      </form>
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 text-center" *ngFor="let note of notes">
+      <p class="note-Title">{{note.note_title}}</p>
+      <p class="note-Description text-uppercase">{{note.note_description}}</p>
+      <button class="material-icons material-icon-btns" (click)="deleteNote(note._id)">delete_outline</button>
+      <button class="material-icons material-icon-btns">edit</button>
+    </div>
+  </div>
+</div>
