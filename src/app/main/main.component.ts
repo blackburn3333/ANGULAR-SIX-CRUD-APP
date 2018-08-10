@@ -9,12 +9,16 @@ import {NotesService} from '../notes.service';
 export class MainComponent implements OnInit {
 
   public notes = [];
-
+  updateVisibility = false;
   constructor(private Note: NotesService) {
   }
 
   ngOnInit() {
     this.viewNote();
+  }
+
+  toggleUpdate() {
+    this.updateVisibility = !this.updateVisibility;
   }
 
   viewNote() {
@@ -42,13 +46,38 @@ export class MainComponent implements OnInit {
 
   deleteNote(id) {
     console.log(id);
-    this.Note.deleteNoteData(id).subscribe(data => {
-      if (data.status = true) {
-        alert(data.message);
-        this.viewNote();
-      } else {
-        alert(data.message);
-      }
-    });
+    const result = confirm('Are you sure want to delete?');
+    if (result === true) {
+      this.Note.deleteNoteData(id).subscribe(data => {
+        if (data.status = true) {
+          alert(data.message);
+          this.viewNote();
+        } else {
+          alert(data.message);
+        }
+      });
+    } else {
+
+    }
+  }
+
+  updateNote(event, id) {
+    event.preventDefault();
+    const target = event.target;
+    const new_note_title = target.querySelector('#note_title_update').value;
+    const new_note_description = target.querySelector('#note_description_update').value;
+    let result = confirm('Are you sure want to update?');
+    if (result = true) {
+      console.log(new_note_title, new_note_description, id);
+      this.Note.updateNote(new_note_title, new_note_description, id).subscribe(data => {
+        if (data.status = true) {
+          alert(data.message);
+          this.toggleUpdate();
+          this.viewNote();
+        } else {
+          alert(data.message);
+        }
+      });
+    }
   }
 }

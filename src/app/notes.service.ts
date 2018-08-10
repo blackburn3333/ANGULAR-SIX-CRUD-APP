@@ -7,6 +7,11 @@ interface InsertData {
   status: Boolean;
 }
 
+interface UpdateData {
+  message: String;
+  status: Boolean;
+}
+
 interface ViewNote {
   _id: String;
   note_title: String;
@@ -32,6 +37,15 @@ export class NotesService {
       note_title,
       note_description
     });
+  }
+
+  updateNote(note_title, note_description, note_id) {
+    console.log('Service > ' + note_title, note_description, note_id);
+    const updateArray = [
+      {'propName': 'note_title', 'value': note_title},
+      {'propName': 'note_description', 'value': note_description}
+  ]
+    return this.http.patch<UpdateData>('/note/' + note_id, updateArray);
   }
 
   getNoteData(): Observable<ViewNote[]> {

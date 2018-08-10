@@ -35,7 +35,7 @@ router.post('/', (req, res, next) => {
                 message: 'Note Insert Successful',
                 status: true
             });
-        }).catch(err => { console.log(err); res.status(500).json({ 
+        }).catch(err => { console.log(err); res.status(500).json({
             message: err,
             status: false
         }) })
@@ -61,8 +61,9 @@ router.get('/:ID', (req, res, next) => {
 	//{"propName": "example_column_two",		"value": "ExampleData"},
 	//{"propName": "example_column_three",      "value": ExampleData"},
 //]
-router.patch('/:ID', (req, res, next) => {
-    const ID = req.params.ID;
+router.patch('/:note_id', (req, res, next) => {
+    console.log(req.body);
+    const ID = req.params.note_id;
     const updateValues = {};
     for (const ops of req.body) {
         updateValues[ops.propName] = ops.value
@@ -71,7 +72,9 @@ router.patch('/:ID', (req, res, next) => {
         .exec()
         .then(result => {
             console.log(result);
-            res.status(200).json({ result });
+            res.status(200).json({ 
+            message: 'Note Update Successful',
+            status: true });
         })
         .catch(err => { console.log(err); res.status(500).json({ error: err }) })
 });

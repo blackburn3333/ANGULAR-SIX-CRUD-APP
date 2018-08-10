@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const note_router = require('./api/routes/note_router');
 
 //database connection
-mongoose.connect('', { useNewUrlParser: true })
+mongoose.connect(' mongodb://localhost:27017/notedb', { useNewUrlParser: true })
 .then(
     console.log('DB Connection OK')
 );

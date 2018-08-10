@@ -10,17 +10,23 @@
       <form (submit)="insertNote($event)">
         <input required type="text" class="text-input" placeholder="Note Title" id="note_title">
         <textarea required class="text-area" placeholder="Note Description" id="note_description"></textarea>
-        <input class="basic-button" type="submit" value="Enter">
+        <input class="basic-button" type="submit" value="Insert">
       </form>
       <hr/>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 text-center" *ngFor="let note of notes">
+    <div class="col-md-4 text-center" *ngFor="let note of notes" >
       <p class="note-Title">{{note.note_title}}</p>
       <p class="note-Description text-uppercase">{{note.note_description}}</p>
       <button class="material-icons material-icon-btns" (click)="deleteNote(note._id)">delete_outline</button>
-      <button class="material-icons material-icon-btns">edit</button>
+      <button class="material-icons material-icon-btns" (click)="toggleUpdate()">edit</button>
+      <form (submit)="updateNote($event,note._id)" *ngIf="updateVisibility">
+        <input value="{{note.note_title}}" class="text-input" placeholder="New Value" id="note_title_update">
+        <textarea value="{{note.note_description}}" required class="text-area" placeholder="Note Description" id="note_description_update"></textarea>
+        <button class="material-icon-btns material-icons" type="submit" >check</button>
+        <button class="material-icon-btns material-icons" (click)="toggleUpdate()">cancel</button>
+      </form>
     </div>
   </div>
 </div>
