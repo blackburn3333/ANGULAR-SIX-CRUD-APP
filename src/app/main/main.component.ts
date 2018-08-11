@@ -10,6 +10,7 @@ export class MainComponent implements OnInit {
 
   public notes = [];
   updateVisibility = false;
+
   constructor(private Note: NotesService) {
   }
 
@@ -19,6 +20,17 @@ export class MainComponent implements OnInit {
 
   toggleUpdate() {
     this.updateVisibility = !this.updateVisibility;
+  }
+
+  show_and_hide_element(element_id) {
+    console.log(element_id);
+    const elementID = document.getElementById(element_id);
+    console.log(elementID.style);
+    if (elementID.style.display === 'none') {
+      elementID.style.display = 'block';
+    } else {
+      elementID.style.display = 'none';
+    }
   }
 
   viewNote() {
@@ -66,8 +78,8 @@ export class MainComponent implements OnInit {
     const target = event.target;
     const new_note_title = target.querySelector('#note_title_update').value;
     const new_note_description = target.querySelector('#note_description_update').value;
-    let result = confirm('Are you sure want to update?');
-    if (result = true) {
+    const result = confirm('Are you sure want to update?');
+    if (result === true) {
       console.log(new_note_title, new_note_description, id);
       this.Note.updateNote(new_note_title, new_note_description, id).subscribe(data => {
         if (data.status = true) {
